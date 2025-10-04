@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta para mi amor</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 30px;
+      font-family: Calibri, sans-serif;
+      color: #333;
+      line-height: 1.8;
+      text-align: center;
+      background: linear-gradient(to right, #ff758c, #ff7eb3);
+    }
+
+    h1 {
+      color: #fff;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    }
+
+    .carta {
+      max-width: 700px;
+      margin: 30px auto;
+      background: rgba(245, 215, 215, 0.9);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: left;
+      display: none; /* oculto hasta dar clic */
+    }
+
+    .slideshow {
+      max-width: 500px;
+      margin: 30px auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      display: none;
+      height: 300px; /* altura definida para que se vean las fotos */
+      position: relative;
+    }
+
+    .slideshow img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .slideshow img.active {
+      display: block;
+    }
+
+    .boton {
+      background: #fff;
+      color: #ff4f81;
+      border: none;
+      padding: 15px 25px;
+      border-radius: 30px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      margin: 20px 0;
+    }
+
+    .boton:hover {
+      background: #ff4f81;
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    audio {
+      display: block;
+      margin: 20px auto;
+      width: 300px;
+    }
+
+    /* Corazones animados */
+    .corazon {
+      position: absolute;
+      bottom: -10px;
+      font-size: 24px;
+      animation: flotar 6s infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes flotar {
+      0% { transform: translateY(0) scale(1); opacity: 0.7; }
+      50% { transform: translateY(-300px) scale(1.5); opacity: 1; }
+      100% { transform: translateY(-600px) scale(0.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💌 Con mucho amor, para ti, mi dani</h1>
+
+  <button class="boton" onclick="iniciarCarta()">Haz clic aquí</button>
+
+  <div class="carta" id="carta">
+    <p>
+      Amor, con mucho cariño y dedicación te hago esta carta. Tal vez no sea mucho, o tal vez sea demasiado para nuestro nivel académico. 
+      Sin embargo, es la muestra del esfuerzo que muchas veces tomamos para obtener un resultado bueno.
+    </p>
+    <p>
+      En fin, al punto... a través de esta carta, quiero expresarte un poco o más de mi amor por ti. Pues, pese a los problemas, jamás se me irá la idea 
+      que fuiste tú quien me devolvió y me enseñó qué es amar, la ilusión de soñar, de vivir en carne propia la felicidad en una sola persona, 
+      en uno o varios momentos compartidos.
+    </p>
+    <p>
+      Cuando escucho "Compartir", la primera canción que me dedicaste, remonto hace 1 año cuando éramos (aún lo somos pero ya adultos xD) 
+      unos niños emocionados por el inicio de nuestra relación, el amor tan puro y entregado que me diste desde el día 1.
+    </p>
+    <p>
+      Awww, que lindos días ... siguen siendo preciosos, claro pero ya con nuestra esencia de pareja, compartiendo cada momento juntos.
+    </p>
+    <p>
+      Mi amor, perdón si no soy perfecta, sin propósito nos hemos dañado algunas veces. Sin embargo, no creo que seas un hombre perfecto 
+      sino real, un hombre "casi perfecto"❤️ ya no te lo digo, pero aún lo pienso. 
+    </p>
+    <p>
+      Te amo, y gracias por muchas veces que me has sacado una sonrisa, por el amor y la felicidad entregada a manos llenas. 
+      Eres el mejor novio, con su perfecta mirada, con su perfecta manera de hacerse amar... cada que te veo, me siento dichosa de amarte una vez más❤️
+    </p>
+  </div>
+
+  <div class="slideshow" id="slideshow">
+    <img src="fotos/el.jpg" class="active">
+    <img src="fotos/recuerdo.jpg">
+    <img src="fotos/nosotros1.jpg">
+    <img src="fotos/nosotros2.jpg">
+  </div>
+
+  <audio id="musica" controls>
+    <source src="amor.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
+  <script>
+    function iniciarCarta() {
+      // Mostrar carta y slideshow
+      document.getElementById("carta").style.display = "block";
+      const slideshow = document.getElementById("slideshow");
+      slideshow.style.display = "block";
+
+      // Reproducir música
+      const musica = document.getElementById("musica");
+      musica.volume = 0.5;
+      musica.play().catch(err => console.log(err));
+
+      // Slideshow automático
+      let index = 0;
+      const fotos = document.querySelectorAll(".slideshow img");
+      setInterval(() => {
+        fotos[index].classList.remove("active");
+        index = (index + 1) % fotos.length;
+        fotos[index].classList.add("active");
+      }, 3000);
+    }
+
+    // Corazones animados
+    function crearCorazon() {
+      const corazon = document.createElement("div");
+      corazon.classList.add("corazon");
+      corazon.innerHTML = "❤️";
+      corazon.style.left = Math.random() * window.innerWidth + "px";
+      corazon.style.animationDuration = (4 + Math.random() * 4) + "s";
+      document.body.appendChild(corazon);
+      setTimeout(() => corazon.remove(), 6000);
+    }
+
+    setInterval(crearCorazon, 500);
+  </script>
+
+</body>
+</html>
