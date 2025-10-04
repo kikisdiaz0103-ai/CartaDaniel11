@@ -108,7 +108,7 @@
     <p>
       En fin, al punto... a través de esta carta, quiero expresarte un poco o más de mi amor por ti. Pues, pese a los problemas, jamás se me irá la idea 
       que fuiste tú quien me devolvió y me enseñó qué es amar, la ilusión de soñar, de vivir en carne propia la felicidad en una sola persona, 
-      en uno o varios momentos compartidos.
+      en uno o varios momentos compartidos, en los abrazos calidos, en los besos tiernos, en el te amo inocente.
     </p>
     <p>
       Cuando escucho "Compartir", la primera canción que me dedicaste, remonto hace 1 año cuando éramos (aún lo somos pero ya adultos xD) 
@@ -118,12 +118,19 @@
       Awww, que lindos días ... siguen siendo preciosos, claro pero ya con nuestra esencia de pareja, compartiendo cada momento juntos.
     </p>
     <p>
-      Mi amor, perdón si no soy perfecta, sin propósito nos hemos dañado algunas veces. Sin embargo, no creo que seas un hombre perfecto 
-      sino real, un hombre "casi perfecto"❤️ ya no te lo digo, pero aún lo pienso. 
+      Mi amor, perdón si no soy perfecta; sin querer, a veces nos hemos hecho daño. Sin embargo, no creo que seas un hombre perfecto 
+      sino real, un hombre "casi perfecto"❤️ ya no te lo digo, pero aún lo pienso.
     </p>
     <p>
-      Te amo, y gracias por muchas veces que me has sacado una sonrisa, por el amor y la felicidad entregada a manos llenas. 
-      Eres el mejor novio, con su perfecta mirada, con su perfecta manera de hacerse amar... cada que te veo, me siento dichosa de amarte una vez más❤️
+      No somos perfectos, y eso nos hace humanos. Hemos estado rotos, sí, pero cada pedazo de nosotros ha encontrado su lugar en este amor que construimos juntos. No necesitamos ser ideales para ser reales, para ser nosotros.
+
+Tus abrazos me enseñan que el amor no es solo palabras, sino gestos que sanan, que reconstruyen. Cada mirada tuya es un recordatorio de que elegimos sanar juntos, de que el dolor compartido se convierte en fuerza.
+
+No somos una pareja perfecta, pero somos una pareja que se elige cada día, que se cuida, que se entiende. Y eso, mi amor, es lo que nos hace únicos.
+
+Te amo con cada latido que no dije, con cada gesto que compartimos. Gracias por ser mi compañero en este viaje imperfecto pero lleno de amor.
+
+Con todo mi corazón,❤️
     </p>
   </div>
 
@@ -134,32 +141,46 @@
     <img src="fotos/nosotros2.jpg">
   </div>
 
-  <audio controls>
-    <source src="musica/amor.mp3.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
-  </audio>
+<audio controls>
+  <source src="musica/amor.mp3.mp3" type="audio/mpeg">
+  Tu navegador no soporta el elemento de audio.
+</audio>
 
   <script>
     function iniciarCarta() {
-      // Mostrar carta y slideshow
-      document.getElementById("carta").style.display = "block";
-      const slideshow = document.getElementById("slideshow");
-      slideshow.style.display = "block";
+  // Mostrar carta y slideshow
+  document.getElementById("carta").style.display = "block";
+  const slideshow = document.getElementById("slideshow");
+  slideshow.style.display = "block";
 
-      // Reproducir música
-      const musica = document.getElementById("musica");
-      musica.volume = 0.5;
-      musica.play().catch(err => console.log(err));
+  // Slideshow automático
+  let index = 0;
+  const fotos = document.querySelectorAll(".slideshow img");
 
-      // Slideshow automático
-      let index = 0;
-      const fotos = document.querySelectorAll(".slideshow img");
-      setInterval(() => {
-        fotos[index].classList.remove("active");
-        index = (index + 1) % fotos.length;
-        fotos[index].classList.add("active");
-      }, 3000);
+  // Inicializamos: solo la primera visible
+  fotos.forEach((img, i) => {
+    if(i === 0) {
+      img.style.display = "block";
+      img.classList.add("active");
+    } else {
+      img.style.display = "none";
+      img.classList.remove("active");
     }
+  });
+
+  setInterval(() => {
+    // Ocultamos la imagen actual
+    fotos[index].style.display = "none";
+    fotos[index].classList.remove("active");
+
+    // Avanzamos al siguiente índice
+    index = (index + 1) % fotos.length;
+
+    // Mostramos la siguiente imagen
+    fotos[index].style.display = "block";
+    fotos[index].classList.add("active");
+  }, 3000);
+}
 
     // Corazones animados
     function crearCorazon() {
@@ -177,4 +198,3 @@
 
 </body>
 </html>
-
